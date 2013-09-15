@@ -31,7 +31,7 @@
 #
 # [*stomp_admin*]
 #   The user configured on Mcollective client used to control
-#   the mcollective infrastructure
+#   the mcollective infrastructure
 #   Set $install_client to true to install mcollective client on
 #   the local node
 #
@@ -432,7 +432,7 @@ class mcollective (
   }
 
   # A default template is provided if $mcollective::stomp_host is
-  # set and no $mcollective::source or $mcollective::template
+  # set and no $mcollective::source or $mcollective::template
   # is explicitely set
   $manage_file_content = $mcollective::template ? {
     ''        => $mcollective::source ? {
@@ -459,8 +459,8 @@ class mcollective (
   }
 
   package { $mcollective::package:
-    provider => $mcollective::package_provider,
     ensure   => $mcollective::manage_package,
+    provider => $mcollective::package_provider,
   }
 
   service { 'mcollective':
