@@ -63,7 +63,7 @@ class mcollective::params {
   }
 
   $package_dependencies = $::operatingsystem ? {
-    /(?i:Debian|Ubuntu|Mint)/ => 'libstomp-ruby',
+    /(?i:Debian|Ubuntu|Mint)/ => 'ruby-stomp',
     default                   => undef,
   }
 
@@ -77,11 +77,13 @@ class mcollective::params {
   }
 
   $process = $::operatingsystem ? {
-    default => 'ruby',
+    /(?i:Debian|Ubuntu|Mint)/ => 'mcollectived',
+    default                   => 'ruby',
   }
 
   $process_args = $::operatingsystem ? {
-    default => 'mcollectived',
+    /(?i:Debian|Ubuntu|Mint)/ => '',
+    default                   => 'mcollectived',
   }
 
   $process_user = $::operatingsystem ? {
