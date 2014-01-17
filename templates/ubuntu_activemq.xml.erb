@@ -28,6 +28,7 @@
           <authenticationUser username="${activemq.username}" password="${activemq.password}" groups="admins,everyone"/>
           <authenticationUser username="<%= scope.lookupvar('mcollective::stomp_user') %>" password="<%= scope.lookupvar('mcollective::stomp_password') %>" groups="mcollective,everyone"/>
           <authenticationUser username="<%= scope.lookupvar('mcollective::stomp_admin') %>" password="<%= scope.lookupvar('mcollective::stomp_admin_password') %>" groups="mcollective,admins,everyone"/>
+          <authenticationUser username="<%= scope.lookupvar('mcollective::client_stomp_user') %>" password="<%= scope.lookupvar('mcollective::client_stomp_password') %>" groups="mcollective,admins,everyone"/>
         </users>
       </simpleAuthenticationPlugin>
 
@@ -39,7 +40,10 @@
               <authorizationEntry topic=">" write="admins" read="admins" admin="admins" />
               <authorizationEntry topic="mcollective.>" write="admins" read="admins" admin="admins" />
               <authorizationEntry topic="mcollective.>" write="admins" read="admins" admin="admins" />
+              <authorizationEntry queue="mcollective.nodes" read="mcollective" admin="mcollective" />
               <authorizationEntry topic="mcollective.*.reply" write="mcollective" admin="mcollective" />
+              <authorizationEntry queue="mcollective.reply.>" write="mcollective" admin="mcollective" />
+              <authorizationEntry topic="mcollective.*.agent" read="mcollective" admin="mcollective" />
               <authorizationEntry topic="mcollective.registration.command" write="mcollective" read="mcollective" admin="mcollective" />
               <authorizationEntry topic="mcollective.*.command" read="mcollective" admin="mcollective" />
               <authorizationEntry topic="ActiveMQ.Advisory.>" read="everyone" write="everyone" admin="everyone"/>
@@ -53,13 +57,13 @@
     <systemUsage>
       <systemUsage>
         <memoryUsage>
-          <memoryUsage limit="100 mb"/>
+          <memoryUsage limit="<%= scope.lookupvar('mcollective::memory_usage') %>"/>
         </memoryUsage>
         <storeUsage>
-          <storeUsage limit="1 gb"/>
+          <storeUsage limit="<%= scope.lookupvar('mcollective::store_usage') %>"/>
         </storeUsage>
         <tempUsage>
-          <tempUsage limit="100 mb"/>
+          <tempUsage limit="<%= scope.lookupvar('mcollective::temp_usage') %>"/>
         </tempUsage>
       </systemUsage>
     </systemUsage>

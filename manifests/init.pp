@@ -31,7 +31,7 @@
 #
 # [*client_stomp_user*]
 #   If set will define a specific per-client user (for example admin instead of mco)
-# 
+#
 # [*client_stomp_password*]
 #   If set will define a specific per-client password
 #
@@ -43,6 +43,15 @@
 #
 # [*stomp_admin_password*]
 #   The password for the stomp_admin_user
+#
+# [*memory_usage*]
+#   ActiveMQ memoryUsage configuration
+#
+# [*store_usage*]
+#   ActiveMQ storeUsage configuration
+#
+# [*temp_usage*]
+#   ActiveMQ tempUsage configuration
 #
 # [*install_client*]
 #   Set to true if you want to install mcollective client
@@ -60,6 +69,9 @@
 #
 # [*psk*]
 #   The Pre Shared Key configured on Mcollective clients and servers
+#
+# [*server_identity*]
+#   The identity of mcollective server. Defaults to hostname.
 #
 # [*package_client*]
 #   The name of mcollective client package
@@ -300,14 +312,18 @@ class mcollective (
   $stomp_port             = params_lookup( 'stomp_port' ),
   $stomp_user             = params_lookup( 'stomp_user' ),
   $stomp_password         = params_lookup( 'stomp_password' ),
-  $client_stomp_user      = params_lookup( 'stomp_user' ),
-  $client_stomp_password  = params_lookup( 'stomp_password' ),
+  $client_stomp_user      = params_lookup( 'client_stomp_user' ),
+  $client_stomp_password  = params_lookup( 'client_stomp_password' ),
   $stomp_admin            = params_lookup( 'stomp_admin' ),
   $stomp_admin_password   = params_lookup( 'stomp_admin_password' ),
+  $memory_usage           = params_lookup( 'memory_usage' ),
+  $store_usage            = params_lookup( 'store_usage' ),
+  $temp_usage             = params_lookup( 'temp_usage' ),
   $install_client         = params_lookup( 'install_client' ),
   $install_stomp_server   = params_lookup( 'install_stomp_server' ),
   $install_plugins        = params_lookup( 'install_plugins' ),
   $psk                    = params_lookup( 'psk' ),
+  $server_identity        = params_lookup( 'server_identity' ),
   $package_client         = params_lookup( 'package_client' ),
   $config_file_client     = params_lookup( 'config_file_client' ),
   $template_client        = params_lookup( 'template_client' ),

@@ -26,10 +26,16 @@ class mcollective::params {
   $stomp_admin = 'mcollective_admin'
   $stomp_admin_password = 'secret!'
 
+  $memory_usage = '100 mb'
+  $store_usage = '1 gb'
+  $temp_usage = '100 mb'
+
   $install_client = false
   $install_stomp_server = false
   $install_plugins = true
   $psk = 'th1s_1s_someTHING_diff1cult2guess!butNOTsoSAFE!!'
+
+  $server_identity = $::fqdn
 
   $package_client = $::operatingsystem ? {
     default => 'mcollective-client',
